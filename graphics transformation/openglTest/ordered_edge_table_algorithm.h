@@ -1,6 +1,5 @@
 #pragma once
 
-#define SEGMENT_NUM 20
 
 class NET
 {
@@ -106,7 +105,7 @@ void fill(int button, int state, int x, int y, segments *seg, int *Ly_line, int 
 		}
 		aet = nets[lowest_y];
 
-		printf("%d\n%d\n", lowest_y, highest_y);
+		//printf("%d\n%d\n", lowest_y, highest_y);
 		for (int i = lowest_y; i < highest_y; i++)
 		{
 			NET *start = aet;
@@ -222,8 +221,8 @@ glClear(GL_COLOR_BUFFER_BIT);
 display();
 //Drawing();
 }*/
-/*
-main()
+
+void init_fill(int *Ly_line, int *Hy_line)
 {
 	
 	for (int i = 0; i < SEGMENT_NUM; i++)
@@ -232,4 +231,3 @@ main()
 		Hy_line[i] = i;
 	}
 }
-*/
