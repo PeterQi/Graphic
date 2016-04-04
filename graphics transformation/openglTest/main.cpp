@@ -25,7 +25,7 @@ void myMouse(int button, int state, int x, int y)
 	{
 		fill(button, state, x, y, seg, Ly_line, Hy_line, num, first_x, first_y, Last_x, Last_y, nets, aet);
 	}
-	else
+	else if (algo_num == 1)
 	{
 		transform(button, state, x, y, count, num, pts);
 	}
@@ -33,12 +33,16 @@ void myMouse(int button, int state, int x, int y)
 
 void display()
 {
-	//glClear(GL_COLOR_BUFFER_BIT);
-	//glBegin(GL_POLYGON);
 	if (algo_num == 0)
 	{
 		glBegin(GL_LINE_LOOP);
 	}
+	else if (algo_num == 2)
+	{
+		glRectf(-0.5, -0.5, 0.5, 0.5);
+		glFlush();
+	}
+
 }
 
 void myDisplay(void)
@@ -65,7 +69,8 @@ int main(int argc, char *argv[])
 	init_fill(Ly_line, Hy_line);
 	srand(unsigned(time(0)));
 	random(0, 3);
-	std::cin >> algo_num;
+	//std::cin >> algo_num;
+	algo_num = 2;
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB);
     glutInitWindowPosition(700, 200);
