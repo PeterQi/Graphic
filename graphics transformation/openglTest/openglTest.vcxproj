@@ -130,6 +130,7 @@
     <ClInclude Include="..\Dependencies\glew\wglew.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="geometric_transform.h" />
+    <ClInclude Include="L_system.h" />
     <ClInclude Include="ordered_edge_table_algorithm.h" />
   </ItemGroup>
   <ItemGroup>

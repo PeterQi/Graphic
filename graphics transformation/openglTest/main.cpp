@@ -7,7 +7,7 @@
 #include "config.h"
 #include "ordered_edge_table_algorithm.h"
 #include "geometric_transform.h"
-
+#include "L_system.h"
 segments seg[SEGMENT_NUM];
 int Ly_line[SEGMENT_NUM], Hy_line[SEGMENT_NUM];
 int first_x, first_y, Last_x, Last_y;
@@ -38,6 +38,11 @@ void display()
 	if (algo_num == 0)
 	{
 		glBegin(GL_LINE_LOOP);
+	}
+	else if (algo_num == 2)
+	{
+		LS_state()
+		LS Koch(PI*60/180, WINDOW_WIDTH, 3, 'F', , char *theP);
 	}
 }
 
