@@ -33,8 +33,6 @@ void myMouse(int button, int state, int x, int y)
 
 void display()
 {
-	//glClear(GL_COLOR_BUFFER_BIT);
-	//glBegin(GL_POLYGON);
 	if (algo_num == 0)
 	{
 		glBegin(GL_LINE_LOOP);
@@ -66,6 +64,7 @@ void display()
 		}
 		Koch.ProcessPaint();
 	}
+
 }
 
 void myDisplay(void)
@@ -93,6 +92,7 @@ int main(int argc, char *argv[])
 	srand(unsigned(time(0)));
 	random(0, 3);
 	std::cin >> algo_num;
+	//algo_num = 2;
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB);
     glutInitWindowPosition(700, 200);
