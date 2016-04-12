@@ -180,7 +180,7 @@ void transform(int button, int state, int x, int y, int &count, int &num, Point 
 			glBegin(GL_POLYGON);
 			if (tmp_change == 0)
 			{
-				double sc = random(0.9, 1.1);
+				double sc = random(0.8, 1.2);
 				for (int i = 0; i < num; i++)
 				{
 					int *tmp = Scale(pts[i].x, pts[i].y, sc);
@@ -191,7 +191,7 @@ void transform(int button, int state, int x, int y, int &count, int &num, Point 
 			}
 			else if (tmp_change == 1)
 			{
-				double an = random(-PI / 10, PI / 10);
+				double an = random(-PI / 5, PI / 5);
 				for (int i = 0; i < num; i++)
 				{
 					int *tmp = rotate(pts[i].x, pts[i].y, an);
@@ -202,8 +202,8 @@ void transform(int button, int state, int x, int y, int &count, int &num, Point 
 			}
 			else
 			{
-				int dx = int(random(-50, 50));
-				int dy = int(random(-50, 50));
+				int dx = int(random(-100, 100));
+				int dy = int(random(-100, 100));
 				for (int i = 0; i < num; i++)
 				{
 					int *tmp = move2(pts[i].x, pts[i].y, dx, dy);

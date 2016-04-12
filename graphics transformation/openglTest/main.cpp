@@ -91,7 +91,15 @@ int main(int argc, char *argv[])
 	init_fill(Ly_line, Hy_line);
 	srand(unsigned(time(0)));
 	random(0, 3);
+	std::cout << "***********************************" << endl
+		<< "*1.有序边表算法                   *" << endl
+		<< "*2.图形变换                       *" << endl
+		<< "*3.Koch岛(n=3)                    *" << endl
+		<< "*4.Koch曲线(n=5)                  *" << endl
+		<< "***********************************" << endl
+		<< "请输入算法号：";
 	std::cin >> algo_num;
+	algo_num -= 1;
 	//algo_num = 2;
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB);
