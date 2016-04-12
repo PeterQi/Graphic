@@ -15,7 +15,7 @@ NET *nets[WINDOW_HEIGHT];
 NET *aet;
 Point pts[30];
 int num = 0;
-int count = 0;
+int count1 = 0;
 GLubyte * pPixelData;
 GLubyte * pNewData;
 int algo_num = 0;
@@ -25,9 +25,9 @@ void myMouse(int button, int state, int x, int y)
 	{
 		fill(button, state, x, y, seg, Ly_line, Hy_line, num, first_x, first_y, Last_x, Last_y, nets, aet);
 	}
-	else
+	else if(algo_num == 1)
 	{
-		transform(button, state, x, y, count, num, pts);
+		transform(button, state, x, y, count1, num, pts);
 	}
 }
 
@@ -41,8 +41,30 @@ void display()
 	}
 	else if (algo_num == 2)
 	{
-		LS_state()
-		LS Koch(PI*60/180, WINDOW_WIDTH, 3, 'F', , char *theP);
+		char tmpP[20];
+		LS Koch;
+		double angel = PI * 90 / 180;
+		LS_state st(WINDOW_WIDTH/3, WINDOW_HEIGHT/2, 0);
+		strcpy_s(tmpP, "F+F-F-FF+F+F-F");
+		Koch.init_LS(angel, WINDOW_WIDTH/4, 4, "F-F-F-F", st, tmpP);
+		while (Koch.n < 3)
+		{
+			Koch.ProcessP();
+		}
+		Koch.ProcessPaint();
+	} else if (algo_num == 3)
+	{
+		char tmpP[20];
+		LS Koch;
+		double angel = PI * 60 / 180;
+		LS_state st(1,1,0);
+		strcpy_s(tmpP, "F-F++F-F");
+		Koch.init_LS(angel, WINDOW_WIDTH, 3, "F", st, tmpP);
+		while (Koch.n < 5)
+		{
+			Koch.ProcessP();
+		}
+		Koch.ProcessPaint();
 	}
 }
 

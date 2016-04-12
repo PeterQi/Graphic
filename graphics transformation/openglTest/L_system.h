@@ -1,6 +1,7 @@
 #pragma once
 #include <stack>
 #include <math.h>
+#define STATE_LENGTH 10000
 using namespace std;
 class LS_state
 {
@@ -24,23 +25,27 @@ class LS
 {
 public:
 	int n;
-	LS(double stheta, double slength, double slength_scale, char * start_state, LS_state start_ls, char *theP)
+	void init_LS(double stheta, double slength, double slength_scale, char * start_state, LS_state start_ls, char *theP)
 	{
 		theta = stheta;
 		length = slength;
-		strcpy(state, start_state);
+		strcpy_s(state, start_state);
 		state_now = start_ls;
 		start_LS = start_ls;
-		strcpy(P, theP);
+		strcpy_s(P, theP);
 		n = 0;
 		length_scale = slength_scale;
+	}
+	LS()
+	{
+
 	}
 	void ProcessF()
 	{
 		double next_x = state_now.x + length*cos(state_now.Beta);
 		double next_y = state_now.y + length*sin(state_now.Beta);
 		
-		glBegin(GL_LINE);
+		glBegin(GL_LINES);
 		glVertex2i(int(state_now.x), int(state_now.y));
 		glVertex2i(int(next_x), int(next_y));
 		glEnd();
@@ -63,7 +68,7 @@ public:
 	}
 	void ProcessMinus()
 	{
-		state_now.Beta -= theta;
+		state_now.Beta += theta;
 	}
 	void ProcessLeftBracket()
 	{
@@ -78,25 +83,26 @@ public:
 	{
 		n++;
 		length /= length_scale;
-		char new_state[2000];
+		char new_state[STATE_LENGTH];
 		int j = 0;
-		strcpy(new_state, "");
+		strcpy_s(new_state, "");
 		int P_len = strlen(P);
 		for (int i = 0; i < strlen(state); i++)
 		{
 			if (state[i] == 'F')
 			{
-				strcat(new_state, P);
+				strcat_s(new_state, P);
 				j += P_len;
 
 			}
 			else
 			{
 				new_state[j] = state[i];
+				new_state[j + 1] = '\0';
 				j++;
 			}
 		}
-		strcpy(state, new_state);
+		strcpy_s(state, new_state);
 	}
 	void ProcessPaint()
 	{
@@ -136,7 +142,7 @@ private:
 	double theta;
 	double length;
 	double length_scale;
-	char state[2000];
+	char state[STATE_LENGTH];
 	LS_state state_now;
 	LS_state start_LS;
 	stack <LS_state> states_stk;
