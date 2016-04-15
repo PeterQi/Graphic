@@ -8,6 +8,7 @@
 #include "ordered_edge_table_algorithm.h"
 #include "geometric_transform.h"
 #include "L_system.h"
+#include "Cohen-Sutherland.h"
 segments seg[SEGMENT_NUM];
 int Ly_line[SEGMENT_NUM], Hy_line[SEGMENT_NUM];
 int first_x, first_y, Last_x, Last_y;
@@ -19,6 +20,11 @@ int count1 = 0;
 GLubyte * pPixelData;
 GLubyte * pNewData;
 int algo_num = 0;
+Segment segs[SEGMENT_NUM];
+bool is_seg = true;
+bool cutting = false;
+Point2 recP[2];
+int rec_num = 0;
 void myMouse(int button, int state, int x, int y)
 {
 	if (algo_num == 0)
@@ -28,6 +34,10 @@ void myMouse(int button, int state, int x, int y)
 	else if(algo_num == 1)
 	{
 		transform(button, state, x, y, count1, num, pts);
+	}
+	else if (algo_num == 4)
+	{
+		Cohen_mouse(button, state, x, y, num, segs, is_seg, cutting, recP, rec_num);
 	}
 }
 
@@ -50,7 +60,8 @@ void display()
 			Koch.ProcessP();
 		}
 		Koch.ProcessPaint();
-	} else if (algo_num == 3)
+	} 
+	else if (algo_num == 3)
 	{
 		char tmpP[20];
 		LS Koch;
@@ -64,12 +75,13 @@ void display()
 		}
 		Koch.ProcessPaint();
 	}
+	
 
 }
 
 void myDisplay(void)
 {
-	glClear(GL_COLOR_BUFFER_BIT);
+	//glClear(GL_COLOR_BUFFER_BIT);
 	display();
 }
 
@@ -96,11 +108,11 @@ int main(int argc, char *argv[])
 		<< "*2.Í¼ÐÎ±ä»»                       *" << endl
 		<< "*3.Kochµº(n=3)                    *" << endl
 		<< "*4.KochÇúÏß(n=5)                  *" << endl
+		<< "*5.Ïß¶Î²Ã¼ô                       *" << endl
 		<< "***********************************" << endl
 		<< "ÇëÊäÈëËã·¨ºÅ£º";
 	std::cin >> algo_num;
 	algo_num -= 1;
-	//algo_num = 2;
     glutInit(&argc, argv);
     glutInitDisplayMode(GLUT_RGB);
     glutInitWindowPosition(700, 200);

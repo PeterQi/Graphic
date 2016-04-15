@@ -53,6 +53,9 @@
     <ClInclude Include="L_system.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="Cohen-Sutherland.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Library Include="..\Dependencies\glew\glew32.lib" />
